@@ -18,6 +18,7 @@ class M3uEntry {
     public $artist;
     public $length;
     public $group;
+    public $logo;
 
     /**
      * M3uEntry constructor.
@@ -45,11 +46,16 @@ class M3uEntry {
             $minor[] = $this->length;
         }
         if($format == self::M3U_FORMAT_MINOR_DATA) {
-            if(!empty($this->group)) {
+            if(!empty($this->group) || !empty($this->logo)) {
                 if(is_null($this->length)) {
                     $minor[] = 0;
                 }
-                $minor[] = 'group-title="' . addslashes($this->group) . '"';
+                if(!empty($this->group)) {
+                    $minor[] = 'group-title="' . addslashes($this->group) . '"';
+                }
+                if(!empty($this->logo)) {
+                    $minor[] = 'tvg-logo="' . addslashes($this->logo) . '"';
+                }
             }
         }
 

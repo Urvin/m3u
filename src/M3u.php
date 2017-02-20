@@ -155,6 +155,12 @@ class M3u
                             case 'group-title':
                                 $entry->group = $val;
                                 break;
+                            case 'tvg-name':
+                                $entry->name = $val;
+                                break;
+                            case 'tvg-logo':
+                                $entry->logo = $val;
+                                break;
                         }
 
                     }
