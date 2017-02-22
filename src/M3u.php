@@ -204,14 +204,14 @@ class M3u
     }
 
     /**
-     * @param int $format
+     * @param bool $useExtFormat
      * @return string
      */
-    public function toString($format = M3uEntry::M3U_FORMAT_MINOR_DATA)
+    public function toString($useExtFormat = true)
     {
         $str = '#EXTM3U' . PHP_EOL;
         foreach ($this->entries as &$entry) {
-            $str .= $entry->toString($format);
+            $str .= $entry->toString($useExtFormat);
         }
         $str .= '#EXT-X-ENDLIST';
         return $str;

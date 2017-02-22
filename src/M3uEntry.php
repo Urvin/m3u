@@ -10,9 +10,6 @@ use urvin\m3u\M3uException;
  */
 class M3uEntry {
 
-    const M3U_FORMAT_MINOR_DATA = 1;
-    const M3U_FORMAT_EXT_DATA = 2;
-
     public $path;
     public $name;
     public $artist;
@@ -34,10 +31,10 @@ class M3uEntry {
     }
 
     /**
-     * @param int $format
+     * @param bool $useExtFormat
      * @return string
      */
-    protected function formatExtInf($format)
+    protected function formatExtInf($useExtFormat)
     {
         $minor = [];
         $major = [];
@@ -45,17 +42,19 @@ class M3uEntry {
         if(!is_null($this->length)) {
             $minor[] = $this->length;
         }
-        if($format == self::M3U_FORMAT_MINOR_DATA) {
-            if(!empty($this->group) || !empty($this->logo)) {
-                if(is_null($this->length)) {
-                    $minor[] = 0;
-                }
-                if(!empty($this->group)) {
-                    $minor[] = 'group-title="' . addslashes($this->group) . '"';
-                }
-                if(!empty($this->logo)) {
-                    $minor[] = 'tvg-logo="' . addslashes($this->logo) . '"';
-                }
+
+        if(!empty($this->group) || !empty($this->logo) || !empty($this->name)) {
+            if(is_null($this->length)) {
+                $minor[] = 0;
+            }
+            if(!empty($this->group)) {
+                $minor[] = 'group-title="' . addslashes($this->group) . '"';
+            }
+            if(!empty($this->name)) {
+                $minor[] = 'tvg-name="' . addslashes($this->name) . '"';
+            }
+            if(!empty($this->logo)) {
+                $minor[] = 'tvg-logo="' . addslashes($this->logo) . '"';
             }
         }
 
@@ -74,7 +73,7 @@ class M3uEntry {
         }
 
         $str = '#EXTINF:' . join(' ', $minor) . ',' . join(' - ', $major) . PHP_EOL;
-        if($format == self::M3U_FORMAT_EXT_DATA && !empty($this->group)) {
+        if($useExtFormat && !empty($this->group)) {
             $str .= '#EXTGRP:' . $this->group . PHP_EOL;
         }
 
@@ -83,15 +82,15 @@ class M3uEntry {
 
 
     /**
-     * @param int $format
+     * @param bool $useExtFormat
      * @return string
      */
-    public function toString($format = self::M3U_FORMAT_MINOR_DATA) {
+    public function toString($useExtFormat = true) {
         if(empty($this->path)) {
             return '';
         }
 
-        return $this->formatExtInf($format) . $this->path . PHP_EOL;
+        return $this->formatExtInf($useExtFormat) . $this->path . PHP_EOL;
     }
 
     public function __toString()
