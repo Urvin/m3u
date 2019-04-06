@@ -2,9 +2,6 @@
 
 namespace urvin\m3u;
 
-use urvin\m3u\M3uEntry;
-use urvin\m3u\M3uException;
-
 /**
  * Class M3u
  * @package urvin\m3u
@@ -19,7 +16,7 @@ class M3u
     /**
      * @return M3uEntry[]
      */
-    public function getEntries()
+    public function getEntries(): array
     {
         return $this->entries;
     }
@@ -27,7 +24,7 @@ class M3u
     /**
      * @param \urvin\m3u\M3uEntry $entry
      */
-    public function addEntry(M3uEntry $entry)
+    public function addEntry(M3uEntry $entry): void
     {
         $this->entries[] = $entry;
     }
@@ -38,7 +35,8 @@ class M3u
      * @param string $str
      * @throws \urvin\m3u\M3uException
      */
-    public function parse($str) {
+    public function parse(string $str): void
+    {
         $this->removeBom($str);
 
         $this->entries = [];
@@ -75,12 +73,10 @@ class M3u
 
     }
 
-    //----------------------------------------------------------------------------------------------------------------//
-
     /**
      * @param string $str
      */
-    protected function removeBom(&$str)
+    protected function removeBom(string &$str): void
     {
         if (substr($str, 0, 3) === "\xEF\xBB\xBF") {
             $str = substr($str, 3);
@@ -91,7 +87,7 @@ class M3u
      * @param string $str
      * @return bool
      */
-    protected function isExtM3u($str)
+    protected function isExtM3u(string $str): bool
     {
         return strtoupper(substr($str, 0, 7)) === '#EXTM3U';
     }
@@ -100,7 +96,7 @@ class M3u
      * @param string $str
      * @return bool
      */
-    protected function isComment($str)
+    protected function isComment(string $str): bool
     {
         return substr($str, 0, 1) === '#';
     }
@@ -109,7 +105,7 @@ class M3u
      * @param string $str
      * @return bool
      */
-    protected function isExtInf($str)
+    protected function isExtInf(string $str): bool
     {
         return strtoupper(substr($str, 0, 8)) === '#EXTINF:';
     }
@@ -118,7 +114,7 @@ class M3u
      * @param string $str
      * @return bool
      */
-    protected function isExtGrp($str)
+    protected function isExtGrp(string $str): bool
     {
         return strtoupper(substr($str, 0, 8)) === '#EXTGRP:';
     }
@@ -127,7 +123,8 @@ class M3u
      * @param string $str
      * @param M3uEntry $entry
      */
-    protected function parseExtInf($str, &$entry) {
+    protected function parseExtInf(string $str, M3uEntry &$entry): void
+    {
         $str = trim(substr($str, 8));
         $majorData = explode(',', $str, 2);
 
@@ -175,7 +172,8 @@ class M3u
      * @param string $str
      * @param M3uEntry $entry
      */
-    protected function parseExtGrp($str, &$entry) {
+    protected function parseExtGrp(string $str, M3uEntry &$entry): void
+    {
         $str = trim(substr($str, 8));
         if(!empty($str)) {
             $entry->group = $str;
@@ -186,7 +184,8 @@ class M3u
      * @param string $str
      * @param M3uEntry $entry
      */
-    protected function parseName($str, &$entry) {
+    protected function parseName(string $str, M3uEntry &$entry): void
+    {
         $data = explode(' - ', $str, 2);
         if(isset($data[1])) {
             $entry->artist = trim($data[0]);
@@ -196,9 +195,7 @@ class M3u
         }
     }
 
-    //----------------------------------------------------------------------------------------------------------------//
-
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }
@@ -207,7 +204,7 @@ class M3u
      * @param bool $useExtFormat
      * @return string
      */
-    public function toString($useExtFormat = true)
+    public function toString(bool $useExtFormat = true): string
     {
         $str = '#EXTM3U' . PHP_EOL;
         foreach ($this->entries as &$entry) {

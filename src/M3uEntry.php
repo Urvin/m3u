@@ -2,26 +2,42 @@
 
 namespace urvin\m3u;
 
-use urvin\m3u\M3uException;
-
 /**
  * Class M3uEntry
  * @package urvin\m3u
  */
 class M3uEntry {
 
+    /**
+     * @var string
+     */
     public $path;
+    /**
+     * @var string
+     */
     public $name;
+    /**
+     * @var string
+     */
     public $artist;
+    /**
+     * @var string
+     */
     public $length;
+    /**
+     * @var string
+     */
     public $group;
+    /**
+     * @var string
+     */
     public $logo;
 
     /**
      * M3uEntry constructor.
      * @param array $initData Inital data
      */
-    public function __construct($initData = [])
+    public function __construct(array $initData = [])
     {
         foreach(get_object_vars($this) as $name => $value) {
             if(isset($initData[$name])) {
@@ -34,7 +50,7 @@ class M3uEntry {
      * @param bool $useExtFormat
      * @return string
      */
-    protected function formatExtInf($useExtFormat)
+    protected function formatExtInf(bool $useExtFormat): string
     {
         $minor = [];
         $major = [];
@@ -85,7 +101,8 @@ class M3uEntry {
      * @param bool $useExtFormat
      * @return string
      */
-    public function toString($useExtFormat = true) {
+    public function toString(bool $useExtFormat = true): string
+    {
         if(empty($this->path)) {
             return '';
         }
@@ -93,7 +110,7 @@ class M3uEntry {
         return $this->formatExtInf($useExtFormat) . $this->path . PHP_EOL;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }
