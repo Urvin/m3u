@@ -1,0 +1,33 @@
+{
+  "name": "urvin/m3u",
+  "description": "M3U PHP parser & creator",
+  "keywords": [
+    "m3u",
+    "m3u8",
+    "playlist"
+  ],
+  "type": "library",
+  "license": "LGPL-3.0",
+  "authors": [
+    {
+      "name": "Yuriy Gorbachev",
+      "email": "y.gorbachev@homeme.ru"
+    }
+  ],
+  "require": {
+    "php": "^7.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
+  },
+  "autoload": {
+    "psr-4": {
+      "urvin\\m3u\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "urvin\\m3u\\tests\\": "tests/"
+    }
+  }
+}

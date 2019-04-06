@@ -11,7 +11,7 @@ class M3u
     /**
      * @var M3uEntry[]
      */
-    protected $entries;
+    protected $entries = [];
 
     /**
      * @return M3uEntry[]
@@ -28,8 +28,6 @@ class M3u
     {
         $this->entries[] = $entry;
     }
-
-    //----------------------------------------------------------------------------------------------------------------//
 
     /**
      * @param string $str

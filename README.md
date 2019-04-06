@@ -1,10 +1,15 @@
-PHP M3u class
-=============
-
+# PHP M3u class
 M3u playlists manipulation (parse & create) class.
 
-Usage
------
+## Requirements:
+- PHP >= 7.1
+
+## Installation
+```bash
+composer require urvin/m3u
+```
+
+## Usage
 ```php
 $playlist =
 '#EXTM3U

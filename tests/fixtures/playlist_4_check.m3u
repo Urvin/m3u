@@ -1,0 +1,29 @@
+#EXTM3U
+#EXTINF:0 group-title="новости" tvg-name="РБК-ТВ",РБК-ТВ
+#EXTGRP:новости
+http://e8caa5e4.iptvspy.me/iptv/tv/106/index.m3u8
+#EXTINF:0 group-title="новости" tvg-name="Пятый Канал",Пятый Канал
+#EXTGRP:новости
+http://e8caa5e4.iptvspy.me/iptv/tv/112/index.m3u8
+#EXTINF:0 group-title="новости" tvg-name="Россия-24",Россия-24
+#EXTGRP:новости
+http://e8caa5e4.iptvspy.me/iptv/tv/507/index.m3u8
+#EXTINF:0 group-title="новости" tvg-name="Москва 24",Москва 24
+#EXTGRP:новости
+http://e8caa5e4.iptvspy.me/iptv/tv/523/index.m3u8
+#EXTINF:0 group-title="новости" tvg-name="BBC World News",BBC World News
+#EXTGRP:новости
+http://e8caa5e4.iptvspy.me/iptv/tv/545/index.m3u8
+#EXTINF:0 group-title="новости" tvg-name="Мир 24",Мир 24
+#EXTGRP:новости
+http://e8caa5e4.iptvspy.me/iptv/tv/712/index.m3u8
+#EXTINF:0 group-title="новости" tvg-name="НТВ (+2)",НТВ (+2)
+#EXTGRP:новости
+http://e8caa5e4.iptvspy.me/iptv/tv/713/index.m3u8
+#EXTINF:0 group-title="новости" tvg-name="Первый канал (+2)",Первый канал (+2)
+#EXTGRP:новости
+http://e8caa5e4.iptvspy.me/iptv/tv/714/index.m3u8
+#EXTINF:0 group-title="новости" tvg-name="Санкт-Петербург",Санкт-Петербург
+#EXTGRP:новости
+http://e8caa5e4.iptvspy.me/iptv/tv/715/index.m3u8
+#EXT-X-ENDLIST
