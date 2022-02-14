@@ -42,6 +42,10 @@ class EntryTest extends TestCase
         $this->assertEmpty(
             $entry->logo
         );
+
+        $this->assertEmpty(
+            $entry->byteRange
+        );
     }
 
     public function testToString()

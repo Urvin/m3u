@@ -59,8 +59,8 @@ class M3u
                     $this->parseExtInf($line, $entry);
                 } elseif ($this->isExtGrp($line)) {
                     $this->parseExtGrp($line, $entry);
-                } else {
-                    continue;
+                } elseif ($this->isExtByteRange($line)) {
+                    $this->parseExtByteRange($line, $entry);
                 }
             } else {
                 $entry->path = $line;
@@ -115,6 +115,15 @@ class M3u
     protected function isExtGrp(string $str): bool
     {
         return strtoupper(substr($str, 0, 8)) === '#EXTGRP:';
+    }
+
+    /**
+     * @param string $str
+     * @return bool
+     */
+    protected function isExtByteRange(string $str): bool
+    {
+        return strtoupper(substr($str, 0, 17)) === '#EXT-X-BYTERANGE:';
     }
 
     /**
@@ -175,6 +184,18 @@ class M3u
         $str = trim(substr($str, 8));
         if(!empty($str)) {
             $entry->group = $str;
+        }
+    }
+
+    /**
+     * @param string $str
+     * @param M3uEntry $entry
+     */
+    protected function parseExtByteRange(string $str, M3uEntry &$entry): void
+    {
+        $str = trim(substr($str, 17));
+        if (!empty($str)) {
+            $entry->byteRange = $str;
         }
     }
 
