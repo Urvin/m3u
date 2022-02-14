@@ -55,7 +55,6 @@ class M3uTest extends TestCase
             $fileToRead = $fileNamePart . '.m3u';
             $fileToCheck = $fileNamePart . '_check.m3u';
 
-
             $m3u->parse(file_get_contents($fileToRead));
 
             $this->assertEquals(

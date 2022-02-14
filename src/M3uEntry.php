@@ -32,6 +32,10 @@ class M3uEntry {
      * @var string
      */
     public $logo;
+    /**
+     * @var string
+     */
+    public $byteRange;
 
     /**
      * M3uEntry constructor.
@@ -91,6 +95,10 @@ class M3uEntry {
         $str = '#EXTINF:' . join(' ', $minor) . ',' . join(' - ', $major) . PHP_EOL;
         if($useExtFormat && !empty($this->group)) {
             $str .= '#EXTGRP:' . $this->group . PHP_EOL;
+        }
+
+        if (!empty($this->byteRange)) {
+            $str .= '#EXT-X-BYTERANGE:' . $this->byteRange . PHP_EOL;
         }
 
         return $str;
